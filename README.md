@@ -23,4 +23,26 @@ Crucible 做的事情很简单：**在你相信一个想法之前，先让人攻
 
 ---
 
+## 快速开始
+
+```bash
+pip install -e .
+export ANTHROPIC_API_KEY=sk-ant-...
+
+# 列出内置领域实例
+crucible instances
+
+# 把一个想法扔进坩埚
+crucible run pure-reasoning "自由意志与决定论相容吗？" \
+  --premise "决定论定义：给定过去与自然律，未来唯一确定" \
+  --level L2 \
+  --output result.json
+```
+
+`--level L1..L4` 控制辩证深度：L1 一轮攻击快速 sanity check，L4 收敛为止的深度对抗。输出是统一的结构（幸存命题、被驳斥命题及教训、认知增益、未解决张力、框架评价、置信度），`--output` 会额外写出含完整审计追踪的 JSON——每个结论都能回答"它经历过什么攻击"。
+
+自定义领域实例只需一个 JSON 描述符（前提类型 + 完整性约束 + 方法市场），见 `src/crucible/instances/` 与 [architecture.md](architecture.md)。
+
+---
+
 *Crucible：坩埚。把想法扔进去，高温煅烧。杂质烧尽，留下来的才是真东西。*

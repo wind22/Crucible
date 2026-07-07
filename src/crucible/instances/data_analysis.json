@@ -1,0 +1,80 @@
+{
+  "domain": "data-analysis",
+  "name": "数据分析实例",
+  "description": "以经验数据为前提的分析论证。地基是数据完整性：数字可追溯、逻辑闭合、呈现不误导。",
+  "premise_types": [
+    {
+      "type": "empirical_data",
+      "description": "经验数据：来自外部世界的、可重复验证的观察记录（表、指标、日志）",
+      "validation": "challenger 检查数字是否可追溯到源数据"
+    },
+    {
+      "type": "metric_definition",
+      "description": "指标口径定义：指标如何计算、分子分母是什么、统计窗口是什么",
+      "validation": "challenger 检查口径是否在论证中悄悄变化"
+    },
+    {
+      "type": "context_constraint",
+      "description": "业务或采集上下文约束：数据在什么条件下产生、有什么已知缺陷",
+      "validation": "challenger 检查结论是否超出数据的适用范围"
+    }
+  ],
+  "integrity_rules": [
+    {
+      "id": "traceable_numbers",
+      "description": "数字来自可追溯的源数据，不得凭空引入未声明的数字",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "logical_closure",
+      "description": "逻辑闭合：分子分母可加总、分解项相加等于总量、双算检测",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "no_misleading_presentation",
+      "description": "呈现不误导：格式合规、明确声明数据与结论的限制条件",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "correlation_is_not_causation",
+      "description": "相关性结论不得表述为因果结论，除非使用了因果推断方法并声明其假设",
+      "checker": "challenger",
+      "severity": "blocker"
+    }
+  ],
+  "method_market": [
+    {
+      "id": "contribution_decomposition",
+      "description": "贡献度分解（additive/LMDI/ratio/Shapley）",
+      "when_to_use": "需要回答\"总量变化由哪些部分贡献\"时"
+    },
+    {
+      "id": "cohort_analysis",
+      "description": "同期群分析（经典/区间/滚动留存、转化、LTV）",
+      "when_to_use": "行为随时间演化、不同时期用户不可直接混合比较时"
+    },
+    {
+      "id": "statistical_testing",
+      "description": "统计检验（显著性、置信区间、功效分析）",
+      "when_to_use": "需要区分真实效应与抽样噪音时"
+    },
+    {
+      "id": "causal_inference",
+      "description": "因果推断（DID、RDD、IV、匹配方法）",
+      "when_to_use": "需要从观察数据回答因果问题、且随机实验不可行时"
+    },
+    {
+      "id": "time_series_decomposition",
+      "description": "时间序列分解（趋势、季节、残差）",
+      "when_to_use": "指标随时间波动、需要分离长期趋势与周期性时"
+    },
+    {
+      "id": "anomaly_detection",
+      "description": "异常检测（统计过程控制、隔离森林）",
+      "when_to_use": "需要判断某个观测是异常还是正常波动时"
+    }
+  ]
+}
