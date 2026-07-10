@@ -1,0 +1,11 @@
+{
+  "name": "crucible",
+  "description": "Crucible 辩证引擎：在你相信一个想法之前，先让人攻击它。倡议者构建论证，挑战者尝试杀死它，反思者审视框架本身——循环直到挑战者找不到新的攻击角度。",
+  "author": {
+    "name": "wind22",
+    "url": "https://github.com/wind22/Crucible"
+  },
+  "repository": "https://github.com/wind22/Crucible",
+  "license": "MIT",
+  "keywords": ["dialectic", "reasoning", "red-team", "critical-thinking"]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "crucible",
+  "description": "Crucible 辩证引擎：在你相信一个想法之前，先让人攻击它。",
+  "owner": {
+    "name": "wind22",
+    "url": "https://github.com/wind22"
+  },
+  "plugins": [
+    {
+      "name": "crucible",
+      "source": "./",
+      "description": "Crucible 辩证引擎：辩证内核技能 + 三个领域实例（纯思辨/数据分析/战略推演）+ 独立上下文挑战者子代理 + /crucible 命令。"
+    }
+  ]
+}

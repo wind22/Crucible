@@ -25,6 +25,24 @@ Crucible 做的事情很简单：**在你相信一个想法之前，先让人攻
 
 ## 快速开始
 
+同一个内核，两种运行时。实例描述符（`src/crucible/instances/*.json`）是唯一事实源，两边共享。
+
+### 作为 Claude Code 技能（对话内运行时）
+
+本仓库同时是一个 Claude Code 插件：辩证内核技能 + 三个领域实例 + 独立上下文的挑战者子代理。
+
+```
+/plugin marketplace add wind22/Crucible
+/plugin install crucible@crucible
+
+# 然后
+/crucible 自由意志与决定论相容吗？ L3
+```
+
+也可以不装插件，直接把 `skills/crucible/` 复制到 `.claude/skills/`。Claude 会分饰倡议者与反思者、按协议跑循环、每轮输出收敛状态行；在支持子代理的环境里，挑战者以独立上下文发起攻击——它看不到倡议者的推理过程，攻击更诚实。
+
+### 作为 Python 引擎（程序化运行时）
+
 ```bash
 pip install -e .
 export ANTHROPIC_API_KEY=sk-ant-...
@@ -41,7 +59,9 @@ crucible run pure-reasoning "自由意志与决定论相容吗？" \
 
 `--level L1..L4` 控制辩证深度：L1 一轮攻击快速 sanity check，L4 收敛为止的深度对抗。输出是统一的结构（幸存命题、被驳斥命题及教训、认知增益、未解决张力、框架评价、置信度），`--output` 会额外写出含完整审计追踪的 JSON——每个结论都能回答"它经历过什么攻击"。
 
-自定义领域实例只需一个 JSON 描述符（前提类型 + 完整性约束 + 方法市场），见 `src/crucible/instances/` 与 [architecture.md](architecture.md)。
+### 自定义领域实例
+
+只需一个 JSON 描述符（前提类型 + 完整性约束 + 方法市场），见 `src/crucible/instances/` 与 [architecture.md](architecture.md)。修改或新增描述符后运行 `python3 scripts/render_skill_instances.py` 重新生成技能侧的实例文件，两个运行时即同时获得新领域。
 
 ---
 

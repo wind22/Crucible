@@ -2,7 +2,14 @@
 
 ## 0.0.1 - 2026-07-07
 
-首个可运行版本：架构文档（architecture.md）的最小完整实现。
+首个可运行版本：架构文档（architecture.md）的最小完整实现。同一个内核，两种运行时——Claude Code 技能集合（对话内）与 Python 引擎（程序化），共享同一份实例描述符。
+
+### 技能集合（对话内运行时）
+- Claude Code 插件结构：`.claude-plugin/plugin.json` + 自托管 marketplace，可经 `/plugin marketplace add wind22/Crucible` 安装
+- `skills/crucible`：辩证内核技能（触发条件、L1–L4 深度、执行步骤）+ 完整辩证协议 `references/dialectical-protocol.md`（角色规范、循环流程、每轮收敛状态行、统一输出结构）
+- `agents/crucible-challenger`：独立上下文的挑战者子代理——只接收命题与前提，不接收倡议者的推理过程
+- `commands/crucible`：`/crucible <问题>` 斜杠命令入口
+- 实例单一事实源：`scripts/render_skill_instances.py` 从 JSON 描述符生成技能侧实例文件，`tests/test_skill_sync.py` 校验两者同步
 
 ### 内核（领域无关）
 - 辩证循环控制流：倡议者提出 → 挑战者攻击 → 倡议者修正/放弃 → 反思者审视 → 收敛判断（`engine.py`）
