@@ -1,0 +1,101 @@
+{
+  "domain": "pure-reasoning",
+  "name": "纯思辨实例",
+  "description": "以概念和逻辑为前提的纯粹思辨论证。地基是逻辑完整性：前提显式、概念一致、推理步骤可追溯。",
+  "premise_types": [
+    {
+      "type": "conceptual_definition",
+      "description": "概念定义，必须显式声明，不可在论证中偷换",
+      "validation": "challenger 检查概念使用一致性"
+    },
+    {
+      "type": "axiom",
+      "description": "公理或先验命题，作为不再回溯论证的起点",
+      "validation": "challenger 检查公理是否被默默替换或加强"
+    },
+    {
+      "type": "thought_experiment",
+      "description": "思想实验：构造的情景及其直觉判断",
+      "validation": "challenger 检查情景是否偷带了结论"
+    }
+  ],
+  "integrity_rules": [
+    {
+      "id": "no_hidden_premises",
+      "description": "所有前提必须显式声明，不得隐藏假设",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "no_self_contradiction",
+      "description": "不能同时主张 A 和 非A",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "no_concept_drift",
+      "description": "概念使用一致，同一术语在论证全程含义不变（无定义漂移）",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "explicit_steps",
+      "description": "推理步骤显式化，不允许逻辑跳跃",
+      "checker": "challenger",
+      "severity": "blocker"
+    },
+    {
+      "id": "traceable_references",
+      "description": "引用链可追溯：引用他人观点时可定位其来源与语境",
+      "checker": "challenger",
+      "severity": "warning"
+    }
+  ],
+  "method_market": [
+    {
+      "id": "reductio_ad_absurdum",
+      "description": "归谬法：假设命题为真 → 推出矛盾 → 命题为假",
+      "when_to_use": "需要检验命题逻辑必然性时"
+    },
+    {
+      "id": "thought_experiment",
+      "description": "思想实验：构造情景，检验直觉或原则",
+      "when_to_use": "抽象原则需要具体情景来暴露后果时"
+    },
+    {
+      "id": "concept_genealogy",
+      "description": "概念谱系追溯：概念的起源与演化，识别语义漂移",
+      "when_to_use": "怀疑论证双方使用同一个词但含义不同时"
+    },
+    {
+      "id": "socratic_questioning",
+      "description": "苏格拉底式诘问：持续追问\"你这么说到底是什么意思\"",
+      "when_to_use": "命题含糊、依赖未经审视的直觉时"
+    },
+    {
+      "id": "analogy_validation",
+      "description": "类比推理验证：A:B::C:D，检验结构同构性",
+      "when_to_use": "论证依赖类比时，检验类比是否在关键维度成立"
+    },
+    {
+      "id": "boundary_exploration",
+      "description": "边界条件探索：命题在极端情况下还成立吗",
+      "when_to_use": "命题声称普遍有效时"
+    },
+    {
+      "id": "counterfactual_reasoning",
+      "description": "反事实推演：如果 X 不成立，会怎样",
+      "when_to_use": "检验某前提对结论的承重程度时"
+    },
+    {
+      "id": "framework_comparison",
+      "description": "框架对比：同一问题用不同理论框架分析，差异在哪",
+      "when_to_use": "怀疑结论是框架的产物而非问题的答案时"
+    },
+    {
+      "id": "premise_sensitivity",
+      "description": "前提敏感性测试：改变某个前提 → 结论如何变化",
+      "when_to_use": "评估结论的稳健性时"
+    }
+  ]
+}
